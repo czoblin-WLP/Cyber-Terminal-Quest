@@ -50,7 +50,7 @@ export function TerminalView() {
             )}
 
             {entry.type === 'ascii' && (
-              <pre className="text-[10px] md:text-sm leading-none text-[var(--color-terminal-info)] font-[family-name:var(--font-terminal)]">
+              <pre className="text-[10px] md:text-sm leading-normal text-[var(--color-terminal-info)] font-[family-name:var(--font-code)] whitespace-pre">
                 {entry.content}
               </pre>
             )}
