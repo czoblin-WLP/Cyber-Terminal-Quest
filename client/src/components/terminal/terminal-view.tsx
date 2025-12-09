@@ -87,7 +87,7 @@ export function TerminalView() {
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
               onKeyDown={handleKeyDown}
-              className="w-full bg-transparent border-none outline-none text-[var(--color-terminal-text)] caret-transparent font-[family-name:var(--font-terminal)] text-lg uppercase"
+              className="w-full bg-transparent border-none outline-none text-[var(--color-terminal-text)] caret-transparent font-[family-name:var(--font-terminal)]"
               autoComplete="off"
               spellCheck="false"
               autoFocus
