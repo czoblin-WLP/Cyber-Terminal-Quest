@@ -78,6 +78,14 @@ export function useTerminalGame() {
         setHistory([]);
         break;
 
+      case 'pwd':
+        addToHistory('output', '/' + path.join('/'));
+        break;
+
+      case 'whoami':
+        addToHistory('output', 'detective');
+        break;
+
       case 'ls':
         const showHidden = args.includes('-a');
         const currentDir = getDir(path);

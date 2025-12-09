@@ -158,6 +158,8 @@ Commands:
 - cd ..         : Go back
 - cd /<path>    : Jump to full path
 - cat <file>    : Open a file
+- pwd           : Print working directory
+- whoami        : Show current user
 - notebook      : View clues
 - help          : Show this list
 - clear         : Clear terminal
