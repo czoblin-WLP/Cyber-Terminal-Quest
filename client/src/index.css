@@ -2,11 +2,11 @@
 @import "tw-animate-css";
 
 @theme inline {
-  --color-terminal-bg: #0a0a0a;
-  --color-terminal-text: #33ff00;
-  --color-terminal-dim: #1a8000;
-  --color-terminal-alert: #ff3300;
-  --color-terminal-info: #00ccff;
+  --color-terminal-bg: #0a0000;
+  --color-terminal-text: #ff0000;
+  --color-terminal-dim: #660000;
+  --color-terminal-alert: #ffcccc;
+  --color-terminal-info: #ff4444;
   
   --font-terminal: "VT323", monospace;
   --font-code: "Fira Code", monospace;
@@ -44,16 +44,16 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: #001100; 
+  background: #110000; 
 }
  
 ::-webkit-scrollbar-thumb {
-  background: #003300; 
-  border: 1px solid #00ff00;
+  background: #330000; 
+  border: 1px solid #ff0000;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #004400; 
+  background: #440000; 
 }
 
 .scanline {
