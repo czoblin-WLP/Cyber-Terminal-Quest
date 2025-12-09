@@ -160,7 +160,6 @@ Commands:
 - cat <file>    : Open a file
 - pwd           : Print working directory
 - whoami        : Show current user
-- theme <color> : Change color (red, green, amber, blue)
 - notebook      : View clues
 - help          : Show this list
 - clear         : Clear terminal
