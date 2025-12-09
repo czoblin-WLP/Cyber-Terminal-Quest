@@ -1,0 +1,315 @@
+# Cyber Terminal Quest - Browser/REPLIT Optimized Version
+import random
+
+# =========================
+# GAME INTRO (No ANSI Colors)
+# =========================
+
+print(" WLP x S.O.F STEAM EXP0 ")
+
+ascii_art = r"""
+|¯| |¯|
+/ | | /
+|O| |O|
+\ | | |
+|| ||
+/z¯¯¯ >
+/──__─' <
+/\ __───¯\¯\
+|||v\/v \\\
+|\|______───/ ¯¯\
+|\##[]## ##\ <> /
+\\ \_|_ /¯²─'
+/__\ ¯/___\
+\_/ \_/
+"""
+
+print(ascii_art)
+
+story_intro = """
+Welcome We Love Philly cyber detective, to Bikini Bottom! My name is Mr. Krabs. 
+The Krusty Krab formula has been stolen!
+
+Everyone suspects Plankton but I have my doubts.  
+Investigate the folders. Find the thief.
+
+Commands:
+- ls            : List folders/files
+- ls -a         : Include hidden files
+- cd <folder>   : Change directory
+- cd ..         : Go back
+- cd /<path>    : Jump to full path
+- cat <file>    : Open a file
+- notebook      : View clues
+- help          : Show this list
+- exit          : Quit
+"""
+
+print(story_intro)
+
+# =========================
+# GAME STATE
+# =========================
+clues_found = []
+MICKEY_ID = "MIC1234"
+
+# =========================
+# FILE CLUES & CONTENT
+# =========================
+file_clues = {
+    "staff/plankton/lab_notes.txt": "Plankton tried accessing the formula but failed.",
+    "staff/quandale_dingle/email.txt": "Quandale clicked a phishing email.",
+    "staff/john_pork/report.txt": "John Pork used MFA successfully.",
+    "staff/mickey_mouse/.private/discovery.txt": "Mickey Mouse stole the Krusty Krab formula!"
+}
+
+file_puzzles = {
+    "staff/mickey_mouse/.private/project.docx": {
+        "content": "Minnie keeps asking for Krabby Patties... I need a plan."
+    }
+}
+
+mini_puzzles = {
+    "inventory/important_readme.txt": {
+        "feedback": "Tip: Use ls -a to see hidden files!"
+    }
+}
+
+file_contents = {
+    "financials/employee_ids.txt": """MIC1234  Mickey Mouse
+PLNK0001  Plankton
+SPB0002   SpongeBob SquarePants
+JPK0003   John Pork
+QDL0004   Quandale Dingle
+KC0005    Kai Cenat
+SKB0006   Skibidi
+LB0007    Labubu
+CHW0008   Chowder"""
+}
+
+# =========================
+# FOLDER SYSTEM
+# =========================
+game_files = {
+    "orders": ["order1.txt", "order2.txt", "backwards.txt"],
+    "inventory": ["important_readme.txt", "supply_list.txt", "stock_check.txt"],
+    "staff": {
+        "spongebob": ["tasks.txt", "shift_log.txt", "description.txt"],
+        "kai_cenat": ["wifi_notes.txt", "public_alert.txt", "description.txt"],
+        "skibidi": ["playlist.txt", "notes.txt", "description.txt"],
+        "john_pork": ["report.txt", "access.log", "daily_summary.txt", "description.txt"],
+        "quandale_dingle": ["email.txt", "message.txt", "snack_list.txt", "description.txt"],
+        "plankton": ["lab_notes.txt", "blueprint.txt", "decoy_formula.txt", "description.txt"],
+        "mickey_mouse": {
+            "work": ["staff_list.txt", "reports.txt", "description.txt"],
+            ".private": ["discovery.txt", "project.docx", "budget.xlsx"]
+        },
+        "labubu": ["experiment.txt", "lab_report.txt", "description.txt"],
+        "chowder": ["recipe_notes.txt", "encrypt_me.txt", "description.txt"]
+    },
+    "financials": ["employee_ids.txt"],
+    "misc": ["temp.log", "junk.txt", "randomfile.txt"]
+}
+
+# =========================
+# USELESS MESSAGES SHUFFLE
+# =========================
+useless_messages = [
+    "Nothing here but an empty Labubu box.",
+    "Chowder reruns are playing — not helpful.",
+    "You get a missed call from John Pork. Again.",
+    "What does 6...7 even mean?",
+    "Spongebob mutters: 'This game cookin me…'"
+]
+
+deck = []
+
+def random_msg():
+    global deck
+    if not deck:
+        deck = useless_messages.copy()
+        random.shuffle(deck)
+    return deck.pop()
+
+# =========================
+# HELPERS
+# =========================
+def show_notebook():
+    if not clues_found:
+        print("\nNotebook is empty.")
+        return
+    print("\n=== DETECTIVE NOTEBOOK ===")
+    for i, clue in enumerate(clues_found, 1):
+        print(f"{i}. {clue}")
+
+def list_files(folder, show_hidden=False):
+    if isinstance(folder, dict):
+        for name in folder:
+            if not show_hidden and name.startswith("."):
+                continue
+            print(" - " + name)
+    else:
+        for f in folder:
+            print(" - " + f)
+
+# =========================
+# MAIN GAME LOOP
+# =========================
+def game_loop():
+    current_folder = game_files
+    path_stack = ["/krustykrab"]
+
+    first_clue = "Investigate all employees to uncover the thief."
+    clues_found.append(first_clue)
+    print(f"*** {first_clue} ***\n")
+
+    while True:
+        cmd = input(f"{'/'.join(path_stack)}> ").strip()
+
+        # =========================
+        # HELP
+        # =========================
+        if cmd == "help":
+            print(story_intro)
+            continue
+
+        # =========================
+        # LIST FILES
+        # =========================
+        if cmd.startswith("ls"):
+            show_hidden = "-a" in cmd
+            list_files(current_folder, show_hidden)
+            continue
+
+        # =========================
+        # CD
+        # =========================
+        if cmd.startswith("cd "):
+            target = cmd[3:].strip()
+
+            if target == "..":
+                if len(path_stack) > 1:
+                    path_stack.pop()
+                    cf = game_files
+                    for p in path_stack[1:]:
+                        cf = cf[p]
+                    current_folder = cf
+                else:
+                    print("Already at top.")
+                continue
+
+            if target.startswith("/"):
+                # full path
+                parts = target.strip("/").split("/")
+                cf = game_files
+                valid = True
+                for p in parts:
+                    if p in cf:
+                        cf = cf[p]
+                    else:
+                        valid = False
+                        break
+                if valid:
+                    current_folder = cf
+                    path_stack = ["/krustykrab"] + parts
+                else:
+                    print("Invalid path.")
+                continue
+
+            # normal cd
+            if isinstance(current_folder, dict) and target in current_folder:
+                current_folder = current_folder[target]
+                path_stack.append(target)
+            else:
+                print("Folder not found.")
+            continue
+
+        # =========================
+        # CAT
+        # =========================
+        if cmd.startswith("cat "):
+            filename = cmd[4:].strip()
+
+            # Local listing
+            if isinstance(current_folder, dict):
+                files_here = current_folder
+            else:
+                files_here = {f: None for f in current_folder}
+
+            if filename not in files_here:
+                print("File not found.")
+                continue
+
+            # Build full path
+            full_path = "/".join(path_stack[1:] + [filename])
+
+            # SPECIAL FILES
+            if full_path.endswith("discovery.txt"):
+                user_id = input("Enter Mickey's ID: ").strip().upper()
+                if user_id == MICKEY_ID:
+                    clue = file_clues["staff/mickey_mouse/.private/discovery.txt"]
+                    print("\nCLUE FOUND:", clue)
+                    if clue not in clues_found:
+                        clues_found.append(clue)
+
+                    print("\n*** CASE CLOSED ***")
+                    print("Mickey Mouse stole the formula!")
+                else:
+                    print("Incorrect ID.")
+                continue
+
+            if filename == "backwards.txt":
+                print("if you want to go back, use cd ..")
+                continue
+
+            if full_path in mini_puzzles:
+                msg = mini_puzzles[full_path]["feedback"]
+                print(msg)
+                if msg not in clues_found:
+                    clues_found.append(msg)
+                continue
+
+            if full_path in file_contents:
+                print(file_contents[full_path])
+                continue
+
+            if full_path in file_puzzles:
+                print(file_puzzles[full_path]["content"])
+                continue
+
+            if full_path in file_clues:
+                clue = file_clues[full_path]
+                print("\nCLUE FOUND:", clue)
+                if clue not in clues_found:
+                    clues_found.append(clue)
+                continue
+
+            # Default = useless msg
+            print(random_msg())
+            continue
+
+        # =========================
+        # NOTEBOOK
+        # =========================
+        if cmd == "notebook":
+            show_notebook()
+            continue
+
+        # =========================
+        # EXIT
+        # =========================
+        if cmd == "exit":
+            print("Thanks for playing!")
+            break
+
+        # =========================
+        # INVALID COMMAND
+        # =========================
+        print("Unknown command. Type 'help' for commands.")
+
+
+# =========================
+# ENTRY POINT
+# =========================
+if __name__ == "__main__":
+    game_loop()
