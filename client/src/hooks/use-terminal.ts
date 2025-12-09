@@ -17,8 +17,14 @@ export function useTerminalGame() {
   const [cluesFound, setCluesFound] = useState<string[]>(["Investigate all employees to uncover the thief."]);
   const [fileSystem] = useState<Record<string, FileSystemNode>>(INITIAL_FILE_SYSTEM);
   const [awaitingInput, setAwaitingInput] = useState<{ type: 'mickey_id'; callback: (val: string) => void } | null>(null);
+  const [theme, setTheme] = useState<'red' | 'green' | 'amber' | 'blue'>('red');
 
   const scrollRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    // Apply theme to body
+    document.body.className = `theme-${theme}`;
+  }, [theme]);
 
   useEffect(() => {
     if (scrollRef.current) {
@@ -76,6 +82,16 @@ export function useTerminalGame() {
 
       case 'clear':
         setHistory([]);
+        break;
+
+      case 'theme':
+        const newTheme = args[0]?.toLowerCase();
+        if (['red', 'green', 'amber', 'blue'].includes(newTheme)) {
+           setTheme(newTheme as any);
+           addToHistory('success', `Theme changed to ${newTheme.toUpperCase()}`);
+        } else {
+           addToHistory('error', 'Usage: theme <red|green|amber|blue>');
+        }
         break;
 
       case 'pwd':

@@ -5,21 +5,53 @@ import { cn } from '@/lib/utils';
 export function TerminalView() {
   const { history, path, executeCommand } = useTerminalGame();
   const [inputValue, setInputValue] = useState('');
+  const [isBooting, setIsBooting] = useState(true);
+  const [bootLines, setBootLines] = useState<string[]>([]);
+  
   const inputRef = useRef<HTMLInputElement>(null);
   const bottomRef = useRef<HTMLDivElement>(null);
 
+  // Boot Sequence
+  useEffect(() => {
+    const bootSequence = [
+      "BIOS Date 01/09/99 14:23:12 Ver: 08.00.12",
+      "CPU: Intel(R) Pentium(R) III CPU 500MHz",
+      "640K RAM System... OK",
+      "Video BIOS: V3.02.11",
+      "Initializing CD-ROM...",
+      "Detecting Primary Master... WLP_DRIVE_01",
+      "Detecting Primary Slave... None",
+      "Loading Kernel...",
+      "Verifying DMI Pool Data...",
+      "Booting from Hard Disk...",
+      "Starting S.O.F. OS..."
+    ];
+
+    let delay = 0;
+    bootSequence.forEach((line, index) => {
+      delay += Math.random() * 300 + 100;
+      setTimeout(() => {
+        setBootLines(prev => [...prev, line]);
+        if (index === bootSequence.length - 1) {
+          setTimeout(() => setIsBooting(false), 800);
+        }
+      }, delay);
+    });
+  }, []);
+
   // Auto-focus input
   useEffect(() => {
+    if (isBooting) return;
     const focusInput = () => inputRef.current?.focus();
     focusInput();
     window.addEventListener('click', focusInput);
     return () => window.removeEventListener('click', focusInput);
-  }, []);
+  }, [isBooting]);
 
   // Auto-scroll to bottom
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
-  }, [history]);
+  }, [history, bootLines]);
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
@@ -27,6 +59,24 @@ export function TerminalView() {
       setInputValue('');
     }
   };
+
+  if (isBooting) {
+    return (
+      <div className="relative min-h-screen w-full bg-[var(--color-terminal-bg)] font-[family-name:var(--font-terminal)] text-[var(--color-terminal-text)] p-4 md:p-8 flex flex-col">
+        <div className="scanline pointer-events-none fixed inset-0 z-50" />
+        <div className="crt-flicker pointer-events-none fixed inset-0 z-40" />
+        <div className="pointer-events-none fixed inset-0 z-30 bg-[radial-gradient(circle_at_center,transparent_50%,rgba(0,0,0,0.4)_100%)]" />
+        
+        <div className="z-10 text-lg md:text-xl">
+           {bootLines.map((line, i) => (
+             <div key={i}>{line}</div>
+           ))}
+           <div className="animate-pulse">_</div>
+        </div>
+        <div ref={bottomRef} />
+      </div>
+    );
+  }
 
   return (
     <div className="relative min-h-screen w-full bg-[var(--color-terminal-bg)] font-[family-name:var(--font-terminal)] text-[var(--color-terminal-text)] p-4 md:p-8 flex flex-col">
