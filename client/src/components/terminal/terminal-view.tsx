@@ -3,9 +3,10 @@ import { useTerminalGame } from '@/hooks/use-terminal';
 import { cn } from '@/lib/utils';
 
 export function TerminalView() {
-  const { history, path, executeCommand, scrollRef } = useTerminalGame();
+  const { history, path, executeCommand } = useTerminalGame();
   const [inputValue, setInputValue] = useState('');
   const inputRef = useRef<HTMLInputElement>(null);
+  const bottomRef = useRef<HTMLDivElement>(null);
 
   // Auto-focus input
   useEffect(() => {
@@ -15,6 +16,11 @@ export function TerminalView() {
     return () => window.removeEventListener('click', focusInput);
   }, []);
 
+  // Auto-scroll to bottom
+  useEffect(() => {
+    bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [history]);
+
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
       executeCommand(inputValue);
@@ -23,17 +29,14 @@ export function TerminalView() {
   };
 
   return (
-    <div className="relative min-h-screen w-full bg-[var(--color-terminal-bg)] font-[family-name:var(--font-terminal)] text-[var(--color-terminal-text)] p-4 md:p-8 overflow-hidden flex flex-col">
+    <div className="relative min-h-screen w-full bg-[var(--color-terminal-bg)] font-[family-name:var(--font-terminal)] text-[var(--color-terminal-text)] p-4 md:p-8 flex flex-col">
       {/* CRT Effects */}
       <div className="scanline pointer-events-none fixed inset-0 z-50" />
       <div className="crt-flicker pointer-events-none fixed inset-0 z-40" />
       <div className="pointer-events-none fixed inset-0 z-30 bg-[radial-gradient(circle_at_center,transparent_50%,rgba(0,0,0,0.4)_100%)]" />
 
       {/* Terminal Content */}
-      <div 
-        ref={scrollRef}
-        className="relative z-10 flex-1 overflow-y-auto pb-4 scroll-smooth"
-      >
+      <div className="relative z-10 flex-1 pb-4">
         {history.map((entry) => (
           <div key={entry.id} className="mb-2 break-words whitespace-pre-wrap">
             {entry.type === 'command' && (
@@ -103,6 +106,9 @@ export function TerminalView() {
             />
           </div>
         </div>
+        
+        {/* Scroll Anchor */}
+        <div ref={bottomRef} />
       </div>
     </div>
   );

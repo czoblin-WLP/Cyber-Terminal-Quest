@@ -92,7 +92,7 @@ export function useTerminalGame() {
         if (currentDir) {
           const files = Object.entries(currentDir)
             .filter(([name, node]) => showHidden || !node.hidden)
-            .map(([name, node]) => (node.type === 'dir' ? `${name}/` : name))
+            .map(([name, node]) => name)
             .join('\n');
           addToHistory('output', files || '(empty)');
         } else {
