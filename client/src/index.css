@@ -30,11 +30,9 @@
     background-color: var(--color-terminal-bg);
     color: var(--color-terminal-text);
     font-family: var(--font-terminal);
-    overflow: hidden; /* Prevent body scroll, handle in terminal */
     margin: 0;
     padding: 0;
-    height: 100vh;
-    width: 100vw;
+    min-height: 100vh;
   }
 }
 
