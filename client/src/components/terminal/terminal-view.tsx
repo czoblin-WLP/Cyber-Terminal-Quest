@@ -14,17 +14,17 @@ export function TerminalView() {
   // Boot Sequence
   useEffect(() => {
     const bootSequence = [
-      "BIOS Date 01/09/99 14:23:12 Ver: 08.00.12",
-      "CPU: Intel(R) Pentium(R) III CPU 500MHz",
-      "640K RAM System... OK",
-      "Video BIOS: V3.02.11",
-      "Initializing CD-ROM...",
-      "Detecting Primary Master... WLP_DRIVE_01",
-      "Detecting Primary Slave... None",
-      "Loading Kernel...",
-      "Verifying DMI Pool Data...",
-      "Booting from Hard Disk...",
-      "Starting S.O.F. OS..."
+      "KRUSTY BIOS v1.0 (c) Eugene Krabs 1999",
+      "CPU: 1 Hamster Wheel (Overclocked)",
+      "Memory: 64KB (Budget Cuts Applied)",
+      "Video Adapter: Kelp-Powered VGA",
+      "Detecting Cash Register... CONNECTED ($$$)",
+      "Loading Spatula Drivers... OK",
+      "Verifying Secret Formula Integrity... [ENCRYPTED]",
+      "Booting KrustyOS...",
+      "Warning: Planktonware Detected (Ignored)",
+      "Initializing Fry Cook Interface...",
+      "Starting S.O.F. System..."
     ];
 
     let delay = 0;
