@@ -140,6 +140,40 @@ export function useTerminalGame() {
             addToHistory('error', `Directory not found: ${target}`);
           }
         }
+
+        // Auto-read description.txt if it exists in the new directory
+        // We need to resolve the new path first
+        let newPath: string[] | null = null;
+        if (target === '..') {
+            if (path.length > 1) newPath = path.slice(0, -1);
+        } else if (target.startsWith('/')) {
+             const potentialPath = ['krustykrab', ...target.split('/').filter(p => p && p !== 'krustykrab')];
+             let valid = true;
+             let current = fileSystem;
+             for(let i=1; i<potentialPath.length; i++) {
+                 const p = potentialPath[i];
+                 if(current[p] && current[p].type === 'dir' && current[p].children) {
+                     current = current[p].children!;
+                 } else {
+                     valid = false;
+                     break;
+                 }
+             }
+             if (valid) newPath = potentialPath;
+        } else {
+            // Relative
+             const currentDir = getDir(path);
+             if (currentDir && currentDir[target] && currentDir[target].type === 'dir') {
+                 newPath = [...path, target];
+             }
+        }
+
+        if (newPath) {
+             const dir = getDir(newPath);
+             if (dir && dir['description.txt'] && dir['description.txt'].type === 'file') {
+                 addToHistory('info', `\n${dir['description.txt'].content}`);
+             }
+        }
         break;
 
       case 'cat':
