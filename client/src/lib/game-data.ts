@@ -65,7 +65,7 @@ export const INITIAL_FILE_SYSTEM: Record<string, FileSystemNode> = {
           'email.txt': { type: 'file', content: 'CLICK HERE FOR FREE VBUCKS -> [LINK CLICKED]' },
           'message.txt': { type: 'file', content: 'Hey guys it\'s Quandale Dingle here.' },
           'snack_list.txt': { type: 'file', content: 'Items stolen: 12' },
-          'description.txt': { type: 'file', content: 'Currently wanted in 14 states.' }
+          'description.txt': { type: 'file', content: 'Idek who this guy is bro' }
         }
       },
       plankton: {
