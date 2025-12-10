@@ -145,11 +145,11 @@ CHW0008   Chowder`
 };
 
 export const STORY_INTRO = `
-Welcome We Love Philly cyber detective, to Bikini Bottom! My name is Mr. Krabs. 
+Welcome We Love Philly cyber detective, to Bikini Bottom! My name is Squidward. 
 The Krusty Krab formula has been stolen!
 
 Everyone suspects Plankton but I have my doubts.  
-Investigate the folders. Find the thief.
+Investigate the folders. Find the thief. Not that I care! *Ahahhhh Ahahh laughs in clarinet*
 
 Commands:
 - ls            : List folders/files
