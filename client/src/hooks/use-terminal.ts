@@ -197,7 +197,7 @@ export function useTerminalGame() {
           const fullPath = [...path, filename].slice(1).join('/'); // Remove 'krustykrab' prefix for key matching
           
           if (filename === 'secret_document.txt' && path[path.length-1] === '.private') {
-             addToHistory('output', 'PROTECTED FILE. ENTER ID TO VIEW:');
+             // prompt handles the message
              setAwaitingInput({
                  type: 'mickey_id',
                  callback: (inputVal) => {
@@ -256,6 +256,7 @@ export function useTerminalGame() {
     history,
     path,
     executeCommand,
-    scrollRef
+    scrollRef,
+    awaitingInput
   };
 }

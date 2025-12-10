@@ -3,7 +3,7 @@ import { useTerminalGame } from '@/hooks/use-terminal';
 import { cn } from '@/lib/utils';
 
 export function TerminalView() {
-  const { history, path, executeCommand } = useTerminalGame();
+  const { history, path, executeCommand, awaitingInput } = useTerminalGame();
   const [inputValue, setInputValue] = useState('');
   const [isBooting, setIsBooting] = useState(true);
   const [bootLines, setBootLines] = useState<string[]>([]);
@@ -181,7 +181,7 @@ export function TerminalView() {
             {/* Input Line */}
             <div className="flex items-center mt-2 group font-[family-name:var(--font-terminal)]">
               <span className="mr-2 text-[var(--color-terminal-info)]">
-                 {path.join('/')}{'>'}
+                 {awaitingInput ? 'PROTECTED FILE. ENTER ID TO VIEW: ' : `${path.join('/')}>`}
               </span>
               <div className="relative flex-1">
                 <input
