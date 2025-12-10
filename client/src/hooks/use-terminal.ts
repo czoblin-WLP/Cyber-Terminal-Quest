@@ -49,13 +49,7 @@ export function useTerminalGame() {
   };
 
   const triggerRandomEvent = () => {
-    // 30% chance to trigger a random message
-    if (Math.random() < 0.3) {
-      const randomMsg = USELESS_MESSAGES[Math.floor(Math.random() * USELESS_MESSAGES.length)];
-      setTimeout(() => {
-        addToHistory('info', `\n> ${randomMsg}`);
-      }, 500);
-    }
+    // Disabled random events
   };
 
   const executeCommand = (cmdStr: string) => {
