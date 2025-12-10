@@ -194,14 +194,6 @@ export function useTerminalGame() {
         }
         break;
 
-      case 'notebook':
-        if (cluesFound.length === 0) {
-            addToHistory('output', 'Notebook is empty.');
-        } else {
-            addToHistory('output', '=== DETECTIVE NOTEBOOK ===\n' + cluesFound.map((c, i) => `${i + 1}. ${c}`).join('\n'));
-        }
-        break;
-
       case 'exit':
         addToHistory('output', 'Shutting down terminal...');
         setTimeout(() => {

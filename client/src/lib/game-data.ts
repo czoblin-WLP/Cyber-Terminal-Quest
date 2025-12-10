@@ -39,7 +39,7 @@ export const INITIAL_FILE_SYSTEM: Record<string, FileSystemNode> = {
         children: {
           'wifi_notes.txt': { type: 'file', content: 'WiFi Password: RIZZ_GOD_123' },
           'public_alert.txt': { type: 'file', content: 'Streaming in the kitchen is NOT allowed.' },
-          'description.txt': { type: 'file', content: 'New hire. Keeps saying "Gyatt" when he sees a Krabby Patty.' }
+          'description.txt': { type: 'file', content: 'New hire. Keeps saying "Rizz" when he sees a Krabby Patty.' }
         }
       },
       skibidi: {
@@ -159,7 +159,6 @@ Commands:
 - cat <file>    : Open a file
 - pwd           : Print working directory
 - whoami        : Show current user
-- notebook      : View clues
 - help          : Show this list
 - clear         : Clear terminal
 - exit          : Quit
