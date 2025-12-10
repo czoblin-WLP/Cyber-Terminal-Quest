@@ -49,8 +49,8 @@ export function useTerminalGame() {
   };
 
   const triggerRandomEvent = () => {
-    // 15% chance to trigger a random message
-    if (Math.random() < 0.15) {
+    // 30% chance to trigger a random message
+    if (Math.random() < 0.3) {
       const randomMsg = USELESS_MESSAGES[Math.floor(Math.random() * USELESS_MESSAGES.length)];
       setTimeout(() => {
         addToHistory('info', `\n> ${randomMsg}`);
@@ -223,7 +223,6 @@ export function useTerminalGame() {
           }
 
           addToHistory('output', dir[filename].content || '');
-          triggerRandomEvent();
 
           // Check for clues
           // Construct path key like "staff/plankton/lab_notes.txt"
@@ -237,6 +236,9 @@ export function useTerminalGame() {
              if (!cluesFound.includes(clue)) {
                  setCluesFound(prev => [...prev, clue]);
              }
+          } else {
+             // Only trigger random event if NO clue was found
+             triggerRandomEvent();
           }
         } else {
            addToHistory('error', 'File not found.');
