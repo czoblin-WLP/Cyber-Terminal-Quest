@@ -210,7 +210,8 @@ export const USELESS_MESSAGES = [
   "Chowder reruns are playing — not helpful.",
   "You get a missed call from John Pork. Again.",
   "What does 6...7 even mean?",
-  "Spongebob mutters: 'This game cookin me…'"
+  "Spongebob mutters: 'This game cookin me…'",
+  "You overhear someone. This game is so lit bro"
 ];
 
 export const CLUES = {
