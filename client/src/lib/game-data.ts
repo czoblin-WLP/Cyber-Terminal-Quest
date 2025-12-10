@@ -145,11 +145,17 @@ CHW0008   Chowder`
 };
 
 export const STORY_INTRO = `
+!!! SYSTEM ALERT: CODE RED IN PROGRESS !!!
+------------------------------------------
 Welcome We Love Philly cyber detective, to Bikini Bottom! My name is Squidward. 
-The Krusty Krab formula has been stolen!
+As the flashing red lights indicate, the Krusty Krab formula has been STOLEN!
 
-Everyone suspects Plankton but I have my doubts.  
-Investigate the folders. Find the thief. Not that I care! *Ahahhhh Ahahh laughs in clarinet*
+Mr. Krabs is currently hyperventilating in the safe, so it's up to you.
+Everyone suspects Plankton, but I have my doubts.  
+
+Investigate the folders. Find the thief. 
+Not that I care! *Ahahhhh Ahahh laughs in clarinet*
+------------------------------------------
 
 Commands:
 - ls            : List folders/files
