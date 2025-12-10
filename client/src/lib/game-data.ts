@@ -21,6 +21,7 @@ export const INITIAL_FILE_SYSTEM: Record<string, FileSystemNode> = {
       'important_readme.txt': { type: 'file', content: 'Tip: Use ls -a to see hidden files!' },
       'supply_list.txt': { type: 'file', content: 'Patties: 400\nBuns: 350\nSecret Sauce: [REDACTED]' },
       'stock_check.txt': { type: 'file', content: 'Need more napkins. Patrick ate them again.' },
+      'empty_box.txt': { type: 'file', content: "Nothing here but an empty Labubu box." }
     }
   },
   staff: {
@@ -31,7 +32,8 @@ export const INITIAL_FILE_SYSTEM: Record<string, FileSystemNode> = {
         children: {
           'tasks.txt': { type: 'file', content: '1. Feed Gary\n2. Work\n3. Jellyfishing' },
           'shift_log.txt': { type: 'file', content: 'Arrived: 04:00 AM. Ready!' },
-          'description.txt': { type: 'file', content: 'Lives in a pineapple under the sea' }
+          'description.txt': { type: 'file', content: 'Lives in a pineapple under the sea' },
+          'thought.txt': { type: 'file', content: "Spongebob mutters: 'This game cookin me…'" }
         }
       },
       kai_cenat: {
@@ -47,7 +49,8 @@ export const INITIAL_FILE_SYSTEM: Record<string, FileSystemNode> = {
         children: {
           'playlist.txt': { type: 'file', content: 'Dop Dop Yes Yes (10 hour version)' },
           'notes.txt': { type: 'file', content: 'Where is the camera man?' },
-          'description.txt': { type: 'file', content: '6...7' }
+          'description.txt': { type: 'file', content: '6...7' },
+          'meaning.txt': { type: 'file', content: "What does 6...7 even mean?" }
         }
       },
       john_pork: {
@@ -56,7 +59,8 @@ export const INITIAL_FILE_SYSTEM: Record<string, FileSystemNode> = {
           'report.txt': { type: 'file', content: 'Suspicious activity detected. MFA enabled.' },
           'access.log': { type: 'file', content: 'Login success. Login success.' },
           'daily_summary.txt': { type: 'file', content: 'Calling everyone. No one answers.' },
-          'description.txt': { type: 'file', content: 'The pig. The myth. The legend.' }
+          'description.txt': { type: 'file', content: 'The pig. The myth. The legend.' },
+          'missed_call.log': { type: 'file', content: "You get a missed call from John Pork. Again." }
         }
       },
       quandale_dingle: {
@@ -112,7 +116,8 @@ export const INITIAL_FILE_SYSTEM: Record<string, FileSystemNode> = {
         children: {
           'recipe_notes.txt': { type: 'file', content: 'Radda radda radda.' },
           'encrypt_me.txt': { type: 'file', content: 'Taking everything that isn\'t nailed down.' },
-          'description.txt': { type: 'file', content: 'Does anyone even watch this show?' }
+          'description.txt': { type: 'file', content: 'Does anyone even watch this show?' },
+          'tv.txt': { type: 'file', content: "Chowder reruns are playing — not helpful." }
         }
       }
     }
@@ -139,7 +144,8 @@ CHW0008   Chowder`
     children: {
       'temp.log': { type: 'file', content: 'System overheating...' },
       'junk.txt': { type: 'file', content: 'asdfghjkl' },
-      'randomfile.txt': { type: 'file', content: 'Nothing to see here.' }
+      'randomfile.txt': { type: 'file', content: 'Nothing to see here.' },
+      'overheard.txt': { type: 'file', content: "You overhear someone. This game is so lit bro" }
     }
   }
 };
