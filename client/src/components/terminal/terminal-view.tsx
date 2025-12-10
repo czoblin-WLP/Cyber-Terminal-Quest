@@ -127,7 +127,7 @@ export function TerminalView() {
 
   return (
     <div className="min-h-screen w-full bg-[#111] p-2 md:p-8 flex items-center justify-center">
-      <div className="monitor-casing w-full max-w-5xl aspect-video md:aspect-auto md:h-[80vh] flex flex-col">
+      <div className="monitor-casing w-full max-w-7xl aspect-video md:aspect-auto md:h-[90vh] flex flex-col">
         <div className="monitor-screen relative flex flex-col p-4 md:p-8 overflow-hidden">
           
           {/* CRT Effects */}
@@ -136,7 +136,7 @@ export function TerminalView() {
           <div className="screen-vignette pointer-events-none fixed inset-0 z-45" />
 
           {/* Terminal Content */}
-          <div className="relative z-10 flex-1 pb-4 overflow-y-auto scrollbar-hide">
+          <div className="relative z-10 flex-1 pb-4 overflow-y-auto scrollbar-hide text-lg md:text-2xl">
             {history.map((entry) => (
               <div key={entry.id} className="mb-2 break-words whitespace-pre-wrap font-[family-name:var(--font-terminal)] text-[var(--color-terminal-text)]">
                 {entry.type === 'command' && (
@@ -153,7 +153,7 @@ export function TerminalView() {
                 )}
 
                 {entry.type === 'ascii' && (
-                  <pre className="text-[10px] md:text-sm leading-normal text-[var(--color-terminal-info)] font-[family-name:var(--font-code)] whitespace-pre">
+                  <pre className="text-xs md:text-base leading-normal text-[var(--color-terminal-info)] font-[family-name:var(--font-code)] whitespace-pre">
                     {entry.content}
                   </pre>
                 )}

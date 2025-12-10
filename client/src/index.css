@@ -3,10 +3,10 @@
 
 @theme inline {
   --color-terminal-bg: #0a0000;
-  --color-terminal-text: #ff0000;
-  --color-terminal-dim: #660000;
+  --color-terminal-text: #ff3333;
+  --color-terminal-dim: #990000;
   --color-terminal-alert: #ffcccc;
-  --color-terminal-info: #ff4444;
+  --color-terminal-info: #ff6666;
   
   --font-terminal: "VT323", monospace;
   --font-code: "Fira Code", monospace;
