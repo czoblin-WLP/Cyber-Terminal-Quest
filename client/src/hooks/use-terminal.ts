@@ -48,6 +48,16 @@ export function useTerminalGame() {
     return current;
   };
 
+  const triggerRandomEvent = () => {
+    // 15% chance to trigger a random message
+    if (Math.random() < 0.15) {
+      const randomMsg = USELESS_MESSAGES[Math.floor(Math.random() * USELESS_MESSAGES.length)];
+      setTimeout(() => {
+        addToHistory('info', `\n> ${randomMsg}`);
+      }, 500);
+    }
+  };
+
   const executeCommand = (cmdStr: string) => {
     const trimmedCmd = cmdStr.trim();
     
@@ -95,6 +105,7 @@ export function useTerminalGame() {
             .map(([name, node]) => name)
             .join('\n');
           addToHistory('output', files || '(empty)');
+          triggerRandomEvent();
         } else {
           addToHistory('error', 'Error: Current directory not found.');
         }
@@ -107,6 +118,7 @@ export function useTerminalGame() {
         if (target === '..') {
           if (path.length > 1) {
             setPath(prev => prev.slice(0, -1));
+            triggerRandomEvent();
           } else {
             addToHistory('error', 'Already at root.');
           }
@@ -128,6 +140,7 @@ export function useTerminalGame() {
             }
             if(valid) {
                 setPath(newPath);
+                triggerRandomEvent();
             } else {
                 addToHistory('error', `Directory not found: ${target}`);
             }
@@ -136,6 +149,7 @@ export function useTerminalGame() {
           const currentDir = getDir(path);
           if (currentDir && currentDir[target] && currentDir[target].type === 'dir') {
             setPath(prev => [...prev, target]);
+            triggerRandomEvent();
           } else {
             addToHistory('error', `Directory not found: ${target}`);
           }
@@ -209,6 +223,7 @@ export function useTerminalGame() {
           }
 
           addToHistory('output', dir[filename].content || '');
+          triggerRandomEvent();
 
           // Check for clues
           // Construct path key like "staff/plankton/lab_notes.txt"
