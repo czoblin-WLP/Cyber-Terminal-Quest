@@ -14,26 +14,35 @@ export function TerminalView() {
   // Boot Sequence
   useEffect(() => {
     const bootSequence = [
-      "KRUSTY BIOS v1.0 (c) Eugene Krabs 1999",
-      "CPU: 1 Hamster Wheel (Overclocked)",
-      "Memory: 64KB (Budget Cuts Applied)",
-      "Video Adapter: Kelp-Powered VGA",
-      "Detecting Cash Register... CONNECTED ($$$)",
-      "Loading Spatula Drivers... OK",
-      "Verifying Secret Formula Integrity... [ENCRYPTED]",
-      "Booting KrustyOS...",
-      "Warning: Planktonware Detected (Ignored)",
-      "Initializing Fry Cook Interface...",
-      "Starting S.O.F. System..."
+      "Initializing KRUSTY-BIOS v1.0.4...",
+      "Copyright (c) 1999-2025 Eugene Krabs Enterprises",
+      "------------------------------------------------",
+      "CPU: Intel i9-9900K (Krabby Lake) @ 5.0GHz",
+      "Memory: 64TB (Stolen from Plankton's Lab)",
+      "Checking Peripherals...",
+      "  > Spatula....................... [OK]",
+      "  > Cash Register................. [ONLINE]",
+      "  > Secret Formula Container...... [MISSING]",
+      "WARNING: CRITICAL SYSTEM FAILURE DETECTED.",
+      "Initiating Emergency Protocols...",
+      "Loading 'detective_module.ko'...",
+      "Mounting '/mnt/bikini_bottom'...",
+      "Establishing secure connection to Shell City...",
+      "Access Granted.",
+      "Welcome, User.",
     ];
 
     let delay = 0;
     bootSequence.forEach((line, index) => {
-      delay += Math.random() * 300 + 100;
+      // Vary delay for realism
+      delay += Math.random() * 200 + 150; 
+      // Longer pause on "MISSING" or specific lines
+      if (line.includes("MISSING") || line.includes("WARNING")) delay += 800;
+      
       setTimeout(() => {
         setBootLines(prev => [...prev, line]);
         if (index === bootSequence.length - 1) {
-          setTimeout(() => setIsBooting(false), 800);
+          setTimeout(() => setIsBooting(false), 1500);
         }
       }, delay);
     });
@@ -65,13 +74,17 @@ export function TerminalView() {
       <div className="relative min-h-screen w-full bg-[var(--color-terminal-bg)] font-[family-name:var(--font-terminal)] text-[var(--color-terminal-text)] p-4 md:p-8 flex flex-col">
         <div className="scanline pointer-events-none fixed inset-0 z-50" />
         <div className="crt-flicker pointer-events-none fixed inset-0 z-40" />
-        <div className="pointer-events-none fixed inset-0 z-30 bg-[radial-gradient(circle_at_center,transparent_50%,rgba(0,0,0,0.4)_100%)]" />
+        <div className="screen-vignette pointer-events-none fixed inset-0 z-45" />
         
-        <div className="z-10 text-lg md:text-xl">
+        <div className="z-10 text-lg md:text-xl font-bold tracking-wider">
            {bootLines.map((line, i) => (
-             <div key={i}>{line}</div>
+             <div key={i} className={cn(
+               "mb-1",
+               line.includes("WARNING") || line.includes("MISSING") ? "text-red-500 animate-pulse" : "",
+               line.includes("OK") || line.includes("ONLINE") ? "text-green-500" : ""
+             )}>{line}</div>
            ))}
-           <div className="animate-pulse">_</div>
+           <div className="animate-pulse mt-4">_</div>
         </div>
         <div ref={bottomRef} />
       </div>
@@ -79,11 +92,11 @@ export function TerminalView() {
   }
 
   return (
-    <div className="relative min-h-screen w-full bg-[var(--color-terminal-bg)] font-[family-name:var(--font-terminal)] text-[var(--color-terminal-text)] p-4 md:p-8 flex flex-col">
+    <div className="relative min-h-screen w-full bg-[var(--color-terminal-bg)] font-[family-name:var(--font-terminal)] text-[var(--color-terminal-text)] p-4 md:p-8 flex flex-col overflow-hidden">
       {/* CRT Effects */}
       <div className="scanline pointer-events-none fixed inset-0 z-50" />
       <div className="crt-flicker pointer-events-none fixed inset-0 z-40" />
-      <div className="pointer-events-none fixed inset-0 z-30 bg-[radial-gradient(circle_at_center,transparent_50%,rgba(0,0,0,0.4)_100%)]" />
+      <div className="screen-vignette pointer-events-none fixed inset-0 z-45" />
 
       {/* Terminal Content */}
       <div className="relative z-10 flex-1 pb-4">

@@ -83,6 +83,14 @@
   z-index: 40;
 }
 
+.screen-vignette {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(circle, rgba(0,0,0,0) 60%, rgba(0,0,0,0.6) 100%);
+  z-index: 45;
+}
+
 @keyframes flicker {
   0% { opacity: 0.08; }
   5% { opacity: 0.09; }
@@ -108,9 +116,14 @@
 }
 
 .text-glow {
-  text-shadow: 0 0 5px var(--color-terminal-text);
+  text-shadow: 0 0 4px var(--color-terminal-text), 0 0 10px rgba(255, 0, 0, 0.5);
 }
 
 .text-glow-alert {
-  text-shadow: 0 0 5px var(--color-terminal-alert);
+  text-shadow: 0 0 4px var(--color-terminal-alert), 0 0 10px rgba(255, 200, 200, 0.5);
+}
+
+::selection {
+  background: var(--color-terminal-text);
+  color: var(--color-terminal-bg);
 }
