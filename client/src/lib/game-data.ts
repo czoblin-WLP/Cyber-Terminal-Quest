@@ -47,7 +47,7 @@ export const INITIAL_FILE_SYSTEM: Record<string, FileSystemNode> = {
         children: {
           'playlist.txt': { type: 'file', content: 'Dop Dop Yes Yes (10 hour version)' },
           'notes.txt': { type: 'file', content: 'Where is the camera man?' },
-          'description.txt': { type: 'file', content: 'Very strange. Only communicates in song.' }
+          'description.txt': { type: 'file', content: '6...7' }
         }
       },
       john_pork: {
