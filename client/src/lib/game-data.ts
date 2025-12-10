@@ -104,7 +104,7 @@ export const INITIAL_FILE_SYSTEM: Record<string, FileSystemNode> = {
         children: {
           'experiment.txt': { type: 'file', content: 'Subject 626... wait wrong franchise.' },
           'lab_report.txt': { type: 'file', content: 'Teeth are sharp.' },
-          'description.txt': { type: 'file', content: 'A monster?' }
+          'description.txt': { type: 'file', content: 'A demonic stuffed animal thing' }
         }
       },
       chowder: {
