@@ -188,13 +188,13 @@ export function useTerminalGame() {
           // Check for special files
           const fullPath = [...path, filename].slice(1).join('/'); // Remove 'krustykrab' prefix for key matching
           
-          if (filename === 'discovery.txt' && path[path.length-1] === '.private') {
+          if (filename === 'secret_document.txt' && path[path.length-1] === '.private') {
              addToHistory('output', 'PROTECTED FILE. ENTER ID TO VIEW:');
              setAwaitingInput({
                  type: 'mickey_id',
                  callback: (inputVal) => {
                      if (inputVal.toUpperCase() === MICKEY_ID) {
-                         const clue = CLUES["staff/mickey_mouse/.private/discovery.txt"];
+                         const clue = CLUES["staff/mickey_mouse/.private/secret_document.txt"];
                          addToHistory('success', `ACCESS GRANTED.\n\n"${clue}"`);
                          if (!cluesFound.includes(clue)) {
                              setCluesFound(prev => [...prev, clue]);

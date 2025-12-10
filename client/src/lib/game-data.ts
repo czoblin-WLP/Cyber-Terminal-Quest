@@ -92,7 +92,7 @@ export const INITIAL_FILE_SYSTEM: Record<string, FileSystemNode> = {
             type: 'dir',
             hidden: true,
             children: {
-              'discovery.txt': { type: 'file', content: 'PROTECTED FILE. ENTER ID TO VIEW.' },
+              'secret_document.txt': { type: 'file', content: 'PROTECTED FILE. ENTER ID TO VIEW.' },
               'project.docx': { type: 'file', content: 'Minnie keeps asking for Krabby Patties... I need a plan.' },
               'budget.xlsx': { type: 'file', content: 'Bribe Budget: $1,000,000' }
             }
@@ -224,7 +224,7 @@ export const CLUES = {
   "staff/plankton/lab_notes.txt": "Plankton tried accessing the formula but failed.",
   "staff/quandale_dingle/email.txt": "Quandale clicked a phishing email.",
   "staff/john_pork/report.txt": "John Pork used MFA successfully.",
-  "staff/mickey_mouse/.private/discovery.txt": "Mickey Mouse stole the Krusty Krab formula!"
+  "staff/mickey_mouse/.private/secret_document.txt": "Mickey Mouse stole the Krusty Krab formula!"
 };
 
 export const MICKEY_ID = "MIC1234";
