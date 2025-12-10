@@ -74,18 +74,18 @@ export const INITIAL_FILE_SYSTEM: Record<string, FileSystemNode> = {
           'lab_notes.txt': { type: 'file', content: 'Plan Z failed. Again. Need new strategy.' },
           'blueprint.txt': { type: 'file', content: 'Mega Bucket Helmet v4.0' },
           'decoy_formula.txt': { type: 'file', content: 'Ingredients: 1% Evil, 99% Hot Gas' },
-          'description.txt': { type: 'file', content: 'Tiny. Evil. 1 eye.' }
+          'description.txt': { type: 'file', content: '50 percent sea/50 percent weed' }
         }
       },
       mickey_mouse: {
         type: 'dir',
         children: {
+          'description.txt': { type: 'file', content: 'A rodent who has his own theme park' },
           work: {
             type: 'dir',
             children: {
               'staff_list.txt': { type: 'file', content: 'Buying out the competition...' },
-              'reports.txt': { type: 'file', content: 'Profit margins are up.' },
-              'description.txt': { type: 'file', content: 'The boss... wait, he doesn\'t work here.' }
+              'reports.txt': { type: 'file', content: 'Profit margins are up.' }
             }
           },
           '.private': {
