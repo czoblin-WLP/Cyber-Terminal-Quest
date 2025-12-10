@@ -112,7 +112,7 @@ export const INITIAL_FILE_SYSTEM: Record<string, FileSystemNode> = {
         children: {
           'recipe_notes.txt': { type: 'file', content: 'Radda radda radda.' },
           'encrypt_me.txt': { type: 'file', content: 'Taking everything that isn\'t nailed down.' },
-          'description.txt': { type: 'file', content: 'I\'m not your boyfriend!' }
+          'description.txt': { type: 'file', content: 'Does anyone even watch this show?' }
         }
       }
     }
