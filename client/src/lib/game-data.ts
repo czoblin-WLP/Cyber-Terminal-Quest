@@ -31,7 +31,7 @@ export const INITIAL_FILE_SYSTEM: Record<string, FileSystemNode> = {
         children: {
           'tasks.txt': { type: 'file', content: '1. Feed Gary\n2. Work\n3. Jellyfishing' },
           'shift_log.txt': { type: 'file', content: 'Arrived: 04:00 AM. Ready!' },
-          'description.txt': { type: 'file', content: 'Employee of the month. Again.' }
+          'description.txt': { type: 'file', content: 'Lives in a pineapple under the sea' }
         }
       },
       kai_cenat: {
@@ -39,7 +39,7 @@ export const INITIAL_FILE_SYSTEM: Record<string, FileSystemNode> = {
         children: {
           'wifi_notes.txt': { type: 'file', content: 'WiFi Password: RIZZ_GOD_123' },
           'public_alert.txt': { type: 'file', content: 'Streaming in the kitchen is NOT allowed.' },
-          'description.txt': { type: 'file', content: 'New hire. Keeps saying "Rizz" when he sees a Krabby Patty.' }
+          'description.txt': { type: 'file', content: 'a funny and/or not funny streamer' }
         }
       },
       skibidi: {
