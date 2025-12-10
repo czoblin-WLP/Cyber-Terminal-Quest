@@ -171,7 +171,7 @@ export function useTerminalGame() {
         if (newPath) {
              const dir = getDir(newPath);
              if (dir && dir['description.txt'] && dir['description.txt'].type === 'file') {
-                 addToHistory('info', `\n${dir['description.txt'].content}`);
+                 addToHistory('info', `[INFO] ${dir['description.txt'].content}`);
              }
         }
         break;
