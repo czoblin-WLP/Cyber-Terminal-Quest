@@ -153,7 +153,6 @@ Investigate the folders. Find the thief.
 
 Commands:
 - ls            : List folders/files
-- ls -a         : Include hidden files
 - cd <folder>   : Change directory
 - cd ..         : Go back
 - cd /<path>    : Jump to full path
