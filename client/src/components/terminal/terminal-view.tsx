@@ -22,22 +22,34 @@ export function TerminalView() {
       "Checking Peripherals...",
       "  > Spatula....................... [OK]",
       "  > Cash Register................. [ONLINE]",
-      "  > Secret Formula Container...... [MISSING]",
-      "WARNING: CRITICAL SYSTEM FAILURE DETECTED.",
-      "Initiating Emergency Protocols...",
-      "Loading 'detective_module.ko'...",
+      "  > Safe Security Lock............ [ENGAGED]",
+      "  > Secret Formula Container...... [SCANNING]",
+      "...........................................",
+      "ERROR: CONTAINER EMPTY! FORMULA NOT FOUND!",
+      "CRITICAL ALERT: ASSET #1 MISSING",
+      "------------------------------------------------",
+      "INITIATING CODE RED PROTOCOL",
+      "  > Locking all exits............. [FAILED]",
+      "  > Alerting authorities.......... [BLOCKED]",
+      "  > Mr. Krabs Panic Level......... [MAXIMUM]",
+      "SYSTEM COMPROMISED. TRACING INTRUDER...",
+      "Trace failed. IP Address masked.",
+      "Deploying Emergency Detective Shell...",
       "Mounting '/mnt/bikini_bottom'...",
-      "Establishing secure connection to Shell City...",
       "Access Granted.",
-      "Welcome, User.",
+      "Welcome, Detective.",
     ];
 
     let delay = 0;
     bootSequence.forEach((line, index) => {
       // Vary delay for realism
-      delay += Math.random() * 200 + 150; 
-      // Longer pause on "MISSING" or specific lines
-      if (line.includes("MISSING") || line.includes("WARNING")) delay += 800;
+      delay += Math.random() * 150 + 100; 
+      
+      // Dramatic pauses
+      if (line.includes("SCANNING")) delay += 1000;
+      if (line.includes("ERROR")) delay += 500;
+      if (line.includes("CRITICAL")) delay += 800;
+      if (line.includes("Panic")) delay += 600;
       
       setTimeout(() => {
         setBootLines(prev => [...prev, line]);
@@ -80,8 +92,9 @@ export function TerminalView() {
            {bootLines.map((line, i) => (
              <div key={i} className={cn(
                "mb-1",
-               line.includes("WARNING") || line.includes("MISSING") ? "text-red-500 animate-pulse" : "",
-               line.includes("OK") || line.includes("ONLINE") ? "text-green-500" : ""
+               line.includes("ERROR") || line.includes("CRITICAL") || line.includes("FAILED") || line.includes("BLOCKED") || line.includes("MAXIMUM") ? "text-red-500 font-extrabold animate-pulse" : "",
+               line.includes("OK") || line.includes("ONLINE") || line.includes("ENGAGED") || line.includes("Granted") ? "text-green-500" : "",
+               line.includes("SCANNING") ? "text-yellow-400" : ""
              )}>{line}</div>
            ))}
            <div className="animate-pulse mt-4">_</div>
