@@ -127,3 +127,25 @@
   background: var(--color-terminal-text);
   color: var(--color-terminal-bg);
 }
+
+.monitor-casing {
+  background-color: #050505;
+  box-shadow: 
+    0 0 0 2px #1a1a1a,
+    0 0 0 4px #0a0a0a,
+    0 0 20px rgba(0,0,0,0.8),
+    inset 0 0 40px rgba(0,0,0,0.9);
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+}
+
+.monitor-screen {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  border-radius: 4px; /* Slight curve at corners */
+  overflow: hidden;
+  background-color: var(--color-terminal-bg);
+  box-shadow: inset 0 0 60px rgba(0,0,0,0.7); /* Deep inset shadow for curved look */
+}
